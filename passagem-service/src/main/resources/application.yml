@@ -1,0 +1,48 @@
+server:
+  port: 8200
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+resilience4j:
+  bulkhead:
+    instances:
+      default:
+        max-concurrent-calls: 2
+        
+  ratelimiter:
+    instances:
+      default:
+        limit-for-period: 2
+        limit-refresh-period: 10s
+  retry:
+    instances:
+      realizar-compra:
+        max-attempts: 2
+        wait-duration: 2s
+        enable-exponential-backoff: true
+spring:
+  application:
+    name: passagem-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/passagem_service?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 2211
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  flyway:
+    url: jdbc:mysql://localhost:3306/
+    schemas: passagem_service
+    user: root
+    password: 2211
+  main:
+    allow-bean-definition-overriding: true
+springdoc:
+  api-docs:
+    path: passagem-service/v3/api-docs
