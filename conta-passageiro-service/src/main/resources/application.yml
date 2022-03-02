@@ -24,3 +24,6 @@ spring:
     schemas: conta_passageiro_service
     user: root
     password: 2211
+springdoc:
+  api-docs:
+    path: conta-passageiro-service/v3/api-docs

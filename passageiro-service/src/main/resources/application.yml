@@ -24,4 +24,7 @@ spring:
     schemas: passageiro_service
     user: root
     password: 2211
+springdoc:
+  api-docs:
+    path: passageiro-service/v3/api-docs
 

@@ -17,10 +17,21 @@ resilience4j:
         limit-refresh-period: 10s
   retry:
     instances:
-      realizar-compra:
+      default:
         max-attempts: 2
         wait-duration: 2s
         enable-exponential-backoff: true
+  circuitbreaker:
+    instances:
+      default:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        automatic-transition-from-open-to-half-open-enabled: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        wait-duration-in-open-state: 5s
+        sliding-window-type: COUNT_BASED
 spring:
   application:
     name: passagem-service
