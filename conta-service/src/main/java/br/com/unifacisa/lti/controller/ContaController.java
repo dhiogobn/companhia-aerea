@@ -28,6 +28,7 @@ public class ContaController {
 	private static final String STRING_VAZIA = "";
 	@Autowired
 	private ContaService service;
+
 	
 	@Operation(summary = "Listar todas as contas do banco")
 	@GetMapping
@@ -39,6 +40,10 @@ public class ContaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Conta> getContaById(@PathVariable long id){
 		return ResponseEntity.ok(service.getContaById(id));
+	}
+
+	public void metodoTeste(){
+		String texto = "asiodasiod";
 	}
 	@Operation(summary = "Criar conta no banco")
 	@PostMapping
